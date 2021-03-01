@@ -1,0 +1,29 @@
+name: ci-helm-chart
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - master
+    paths:
+      - 'ops/helm-chart-sources/**'
+
+
+jobs:
+  release-helm-chart:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout git-repo
+        uses: actions/checkout@v2
+
+      - name: Publish helm-chart
+        uses: stefanprodan/helm-gh-pages@master
+        with:
+          charts_dir: ops
+          token: ${{ secrets.HELM_CHART_RELEASE }}
+          charts_url: https://niehaitao.github.io
+          owner: niehaitao
+          repository: niehaitao.github.io
+          branch: main
+          target_dir: helm-charts
+          commit_username: lil-app-releaser

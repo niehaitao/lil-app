@@ -1,0 +1,10 @@
+ingress:
+  host: {{ host }}
+
+image:
+  registry:  {{ image['registry'] }}
+  path: {{ image['path'] }}
+  tag: {{ image['tag'] }}
+
+imagePullSecrets:
+    - name: {{ image['auth'] }}

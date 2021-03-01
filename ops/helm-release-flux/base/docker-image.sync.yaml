@@ -1,0 +1,50 @@
+---
+apiVersion: image.toolkit.fluxcd.io/v1alpha1
+kind: ImageRepository
+metadata:
+  name: lil
+  namespace: flux-system
+spec:
+  image: docker.io/haitaonie/lil-app
+  interval: 1m0s
+---
+apiVersion: image.toolkit.fluxcd.io/v1alpha1
+kind: ImagePolicy
+metadata:
+  name: lil
+  namespace: flux-system
+spec:
+  imageRepositoryRef:
+    name: lil
+  policy:
+    semver:
+      range: 1.0.x
+---
+apiVersion: source.toolkit.fluxcd.io/v1beta1
+kind: GitRepository
+metadata:
+  name: lil
+  namespace: flux-system
+spec:
+  interval: 30s
+  ref:
+    branch: master
+  secretRef:
+    name: acr
+  url: https://github.com/niehaitao/lil-app
+---
+apiVersion: image.toolkit.fluxcd.io/v1alpha1
+kind: ImageUpdateAutomation
+metadata:
+  name: lil
+  namespace: flux-system
+spec:
+  checkout:
+    branch: master
+    gitRepositoryRef:
+      name: lil
+  commit:
+    authorEmail: fluxcdbot@users.noreply.github.com
+    authorName: fluxcdbot
+    messageTemplate: '[ci skip] update image'
+  interval: 1m0s

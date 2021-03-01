@@ -1,0 +1,48 @@
+# Default values for lil-app.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+# ==================================
+# Customized
+# ==================================
+
+image:
+  repository: docker.io
+  path: haitaonie/lil-app
+  tag: 0.0.1
+  pullPolicy: IfNotPresent
+
+imagePullSecrets: 
+  - name: your-docker-registry
+
+service:
+  type: ClusterIP
+  port: 80
+  internalPort: 8080
+
+ingress:
+  enabled: true
+  annotations: 
+  host: app.lil.com
+# ==================================
+# Generated
+# ==================================
+
+replicaCount: 1
+
+nameOverride: ""
+fullnameOverride: ""
+
+
+podSecurityContext: {}
+
+
+securityContext: {}
+
+resources: {}
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}

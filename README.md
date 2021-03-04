@@ -30,7 +30,7 @@ jinja2 \
   .secret/lil-app.values.yaml | tee \
   .target/lil-app.values.yaml
 
-helm upgrade -i lil-app niehaitao/lil-app -f .target/lil-app.values.yaml
+helm upgrade lil-app niehaitao/lil-app -i -n app -f .target/lil-app.values.yaml --dry-run --debug
 ```
 
 ## CD GitOps Flux

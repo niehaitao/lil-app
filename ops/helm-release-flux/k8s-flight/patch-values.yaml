@@ -11,6 +11,6 @@ spec:
     image:
       registry: docker.io
       path: haitaonie/lil-app
-      tag: 1.0.1 # {"$imagepolicy": "flux-deploy:lil-app:tag"}
+      tag: 1.0.3 # {"$imagepolicy": "flux-deploy:lil-app:tag"}
     ingress:
       enabled: false

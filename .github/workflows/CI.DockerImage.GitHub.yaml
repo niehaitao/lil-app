@@ -1,4 +1,4 @@
-name: ci-docker-image
+name: ci-docker-image ghcr.io
 
 env:
   DOCKER_REGISTRY: ghcr.io
@@ -17,7 +17,7 @@ on:
         default: "latest,1.0.1"
 
 jobs:
-  release-docker-image-ghcr.io:
+  release-docker-image:
     runs-on: ubuntu-latest
     steps:
       - name: Git Checkout

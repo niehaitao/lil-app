@@ -36,8 +36,8 @@ jobs:
         uses: docker/build-push-action@v1
         with:
           dockerfile: ${{ env.DOCKER_FILE }}
-          registry: ghcr.io
           username: "ci-pop-cloud"
           password: ${{ secrets.CI_POP_CLOUD_PERSONAL_ACCESS_TOKEN }}
-          repository: pop-cloud.github.io/docker-images
+          registry: ghcr.io
+          repository: pop-cloud/docker-images
           tags: latest

@@ -21,9 +21,9 @@ jobs:
         with:
           charts_dir: ops
           token: ${{ secrets.HELM_CHART_RELEASE }}
-          charts_url: https://niehaitao.github.io
+          charts_url: https://pop-cloud.github.io
           owner: niehaitao
-          repository: niehaitao.github.io
+          repository: /pop-cloud.github.io
           branch: main
           target_dir: helm-charts
-          commit_username: lil-app-releaser
+          commit_username: ci-pop-cloud

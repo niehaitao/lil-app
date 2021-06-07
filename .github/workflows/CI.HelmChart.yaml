@@ -1,7 +1,7 @@
 name: ci-helm-chart
 
 env:
-  SOURCE_DIR: ops/helm-chart-sources
+  SOURCE_DIR: ops
   TARGET_OWNER: pop-cloud
   TARGET_REPO: pop-cloud.github.io
   TARGET_BRANCH: main
@@ -25,7 +25,7 @@ jobs:
       - name: Publish helm-chart
         uses: stefanprodan/helm-gh-pages@master
         with:
-          charts_dir: ops/helm-chart-sources
+          charts_dir: ${{ env.SOURCE_DIR }}
           token: ${{ secrets.HELM_CHART_RELEASE }}
           charts_url: https://${{ env.TARGET_REPO }}
           owner: ${{ env.TARGET_OWNER }}

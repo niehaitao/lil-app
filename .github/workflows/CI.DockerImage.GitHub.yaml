@@ -11,10 +11,10 @@ env:
 on:
   workflow_dispatch:
     inputs:
-      tag:
+      tags:
         description: "docker image version"
         required: true
-        default: "1.0.1"
+        default: "latest,1.0.1"
 
 jobs:
   release-docker-image:
@@ -40,4 +40,4 @@ jobs:
           password: ${{ secrets.CI_POP_CLOUD_PERSONAL_ACCESS_TOKEN }}
           registry: ghcr.io
           repository: pop-cloud/lil-app
-          tags: latest,${{ steps.docker_meta.outputs.tags }}
+          tags: ${{ github.event.inputs.tags }}

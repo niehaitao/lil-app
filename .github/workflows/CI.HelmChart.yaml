@@ -27,7 +27,7 @@ jobs:
         with:
           charts_dir: ${{ env.SOURCE_DIR }}
           token: ${{ secrets.HELM_CHART_RELEASE }}
-          charts_url: https://${{ env.TARGET_REPO }}
+          charts_url: https://pop-cloud.github.io
           owner: ${{ env.TARGET_OWNER }}
           repository: ${{ env.TARGET_REPO }}
           branch: ${{ env.TARGET_BRANCH }}

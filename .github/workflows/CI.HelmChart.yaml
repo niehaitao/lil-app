@@ -5,7 +5,7 @@ env:
   TARGET_OWNER: pop-cloud
   TARGET_REPO: pop-cloud.github.io
   TARGET_BRANCH: main
-  TARGET_DEPLOY_KEY: ${{ secrets.HELM_CHART_RELEASE }}
+  TARGET_TOKEN: ${{ secrets.CI_POP_CLOUD_PERSONAL_ACCESS_TOKEN }}
   TARGET_DIR: helm-charts
 on:
   workflow_dispatch:
@@ -26,8 +26,7 @@ jobs:
         uses: stefanprodan/helm-gh-pages@master
         with:
           charts_dir: ${{ env.SOURCE_DIR }}
-          token: ${{ secrets.HELM_CHART_RELEASE }}
-          charts_url: https://pop-cloud.github.io
+          token: ${{ env.TARGET_TOKEN }}
           owner: ${{ env.TARGET_OWNER }}
           repository: ${{ env.TARGET_REPO }}
           branch: ${{ env.TARGET_BRANCH }}

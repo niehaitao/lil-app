@@ -17,7 +17,7 @@ on:
         default: "latest,1.0.1"
 
 jobs:
-  release-docker-image:
+  release-docker-image-ghcr.io:
     runs-on: ubuntu-latest
     steps:
       - name: Git Checkout

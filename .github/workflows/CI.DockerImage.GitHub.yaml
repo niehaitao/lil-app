@@ -40,4 +40,4 @@ jobs:
           username: "ci-pop-cloud"
           password: ${{ secrets.CI_POP_CLOUD_PERSONAL_ACCESS_TOKEN }}
           repository: pop-cloud.github.io/docker-images
-          tags: latest,${{ github.event.inputs.tag }}
+          tags: latest

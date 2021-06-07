@@ -1,0 +1,42 @@
+name: ci-docker-image
+
+env:
+  DOCKER_REGISTRY: ghcr.io
+  DOCKER_USER: ci-pop-cloud
+  DOCKER_IMAGE: lil-app
+
+  DOCKER_SOURCE: dev
+  DOCKER_FILE: dev/app.dockerfile
+
+on:
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: "docker image version"
+        required: true
+        default: "1.0.1"
+
+jobs:
+  release-docker-image:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Git Checkout
+        uses: actions/checkout@v2
+
+      - name: Get current date
+        id: date
+        run: echo "::set-output name=current::$(date +'%Y%m%d%H%M%S')"
+
+      - name: Update index
+        working-directory: ${{ env.DOCKER_SOURCE }}
+        run: |
+          sed 's/docker_tag/'${{ steps.date.outputs.current }}'/g' index.tmpl > index.html
+
+      - name: 'Build:dockerimage'
+        uses: docker/build-push-action@v1
+        with:
+          registry: ghcr.io
+          username: "ci-pop-cloud"
+          password: ${{ secrets.CI_POP_CLOUD_PERSONAL_ACCESS_TOKEN }}
+          repository: pop-cloud.github.io/docker-images
+          tags: latest,{{ github.event.inputs.tag }}

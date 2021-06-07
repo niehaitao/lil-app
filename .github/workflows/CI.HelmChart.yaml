@@ -31,5 +31,6 @@ jobs:
           repository: ${{ env.TARGET_REPO }}
           branch: ${{ env.TARGET_BRANCH }}
           target_dir: ${{ env.TARGET_DIR }}
+          charts_url: https://${{ env.TARGET_REPO }}
           commit_username: ci-pop-cloud
           commit_email: ci.pop.cloud@gmail.com

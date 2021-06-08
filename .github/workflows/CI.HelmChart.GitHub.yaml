@@ -1,5 +1,6 @@
-name: ci-helm-chart
+name: ci-helm-chart@github.io
 
+# helm upgrade -i my lil-app --repo https://pop-cloud.github.io/helm-charts
 env:
   SOURCE_DIR: ops
   TARGET_OWNER: pop-cloud

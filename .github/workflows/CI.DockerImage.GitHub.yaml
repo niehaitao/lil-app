@@ -1,9 +1,11 @@
-name: ci-docker-image ghcr.io
+name: ci-docker-image@ghcr.io
 
+# docker pull ghcr.io/pop-cloud/lil-app:1.0.1
 env:
   DOCKER_REGISTRY: ghcr.io
-  DOCKER_USER: ci-pop-cloud
+  DOCKER_REPOSITORY: pop-cloud
   DOCKER_IMAGE: lil-app
+  DOCKER_USER: ci-pop-cloud
 
   DOCKER_SOURCE: dev
   DOCKER_FILE: dev/app.dockerfile
@@ -32,12 +34,12 @@ jobs:
         run: |
           sed 's/docker_tag/'${{ steps.date.outputs.current }}'/g' index.tmpl > index.html
 
-      - name: 'Build:dockerimage'
+      - name: Docker Build-Push
         uses: docker/build-push-action@v1
         with:
           dockerfile: ${{ env.DOCKER_FILE }}
           username: "ci-pop-cloud"
           password: ${{ secrets.CI_POP_CLOUD_PERSONAL_ACCESS_TOKEN }}
           registry: ghcr.io
-          repository: pop-cloud/lil-app
+          repository: pop-cloud/${{ env.DOCKER_IMAGE }}
           tags: ${{ github.event.inputs.tags }}

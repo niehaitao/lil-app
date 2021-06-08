@@ -1,9 +1,11 @@
-name: ci-docker-image
+name: ci-docker-image@docker.io
 
+# docker pull docker.io/haitaonie/lil-app
 env:
   DOCKER_REGISTRY: docker.io
-  DOCKER_USER: haitaonie
+  DOCKER_REPOSITORY: haitaonie
   DOCKER_IMAGE: lil-app
+  DOCKER_USER: haitaonie
 
   DOCKER_SOURCE: dev
   DOCKER_FILE: dev/app.dockerfile
@@ -36,7 +38,7 @@ jobs:
         id: docker_meta
         uses: crazy-max/ghaction-docker-meta@v1
         with:
-          images: ${{ env.DOCKER_USER }}/${{ env.DOCKER_IMAGE }}
+          images: ${{ env.DOCKER_REPOSITORY }}/${{ env.DOCKER_IMAGE }}
           tag-sha: false
           tag-edge: false
           tag-latest: true
